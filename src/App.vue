@@ -1,12 +1,16 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <router-link to="/"><img src="./assets/logo.png" alt="id" /></router-link>
+    <router-link to="/products">Products</router-link>
+    <router-link to="/card">Card</router-link>
+    <router-view></router-view>
   </div>
 </template>
+
+<script>
+export default {};
+</script>
+
 
 <style>
 #app {
@@ -15,18 +19,8 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
 }
 </style>

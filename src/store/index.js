@@ -9,8 +9,6 @@ export default new Vuex.Store({
     card: [],
     products: productList,
   },
-  getters: {
-  },
   mutations: {
     addToCard({ card }, product) {
       const itemIndex = card.findIndex(item => item.id === product.id)
@@ -19,10 +17,27 @@ export default new Vuex.Store({
       } else {
         card[itemIndex].count = parseInt(product.count) + parseInt(card[itemIndex].count)
       }
+    },
+    deductItemCount({ card }, product) {
+      const itemIndex = card.findIndex(item => item.id === product.id);
+
+      card[itemIndex].count > 1 ? card[itemIndex].count-- : card.splice(itemIndex, 1)
+    },
+    removeItem({ card }, product) {
+      const itemIndex = card.findIndex(item => item.id === product.id);
+      card.splice(itemIndex, 1)
+    },
+    clearAll(state) {
+      state.card = []
     }
   },
-  actions: {
-  },
-  modules: {
+  getters: {
+    totalAmount(state) {
+      let amount = 0;
+      state.card.map(item => {
+        amount += item.price * item.count
+      });
+      return amount
+    }
   }
 })

@@ -2,26 +2,27 @@
   <div id="products">
     <h2>Products</h2>
     <div class="notification" v-for="(info, key) in infos" :key="key">
-      <table class="{products : products.lenght !==0}">
-        <tr>
-          <th>Product Name</th>
-          <th>Price</th>
-          <th>Buy</th>
-        </tr>
-        <tr v-for="product in products" :key="product.id">
-          <td>{{ product.name }}</td>
-          <td>{{ product.price }}</td>
-          <td>
-            <label>
-              <input type="number" :id="product.id" value="0" />
-            </label>
-          </td>
-          <td>
-            <button @click="addToCard(product)">Add to card</button>
-          </td>
-        </tr>
-      </table>
+      {{ info }}
     </div>
+    <table class="{products : products.lenght !==0}">
+      <tr>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Buy</th>
+      </tr>
+      <tr v-for="product in products" :key="product.id">
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>
+          <label>
+            <input type="number" :id="product.id" value="0" />
+          </label>
+        </td>
+        <td>
+          <button @click="addToCard(product)">Add to card</button>
+        </td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -35,7 +36,7 @@ export default {
     };
   },
   computed: {
-    ...mapState["products"],
+    ...mapState(["products"]),
   },
   methods: {
     addToCard(product) {
@@ -43,7 +44,7 @@ export default {
         const count = document.getElementById(product.id).value;
         product = { ...product, count };
         this.$store.commit("addToCard", product);
-        const info = product.name + "added to card";
+        const info = product.name + " added to card";
         this.infos.push(info);
         setTimeout(() => {
           document.getElementById(product.id).value = 0;
