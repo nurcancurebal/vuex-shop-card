@@ -1,21 +1,26 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Products from "./component/Products";
+import Card from "./component/Card";
+
 
 Vue.use(VueRouter)
 
-import Products from "../components/Products";
-import Card from "../components/Card";
+const routes = [
+  {
+    path: '/products',
+    component: Products
+  },
+  {
+    path: '/card',
+    component: Card
+  }
+]
 
-export default new VueRouter({
+const router = new VueRouter({
   mode: 'history',
-  routes: [
-    {
-      path: '/products',
-      component: Products
-    },
-    {
-      path: '/card',
-      component: Card
-    }
-  ]
+  base: process.env.BASE_URL,
+  routes
 })
+
+export default router

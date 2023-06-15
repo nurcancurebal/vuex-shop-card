@@ -39,5 +39,9 @@ export default new Vuex.Store({
       });
       return amount
     }
+  },
+  actions: {
+  },
+  modules: {
   }
 })
