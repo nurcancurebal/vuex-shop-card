@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Products from "./component/Products";
-import Card from "./component/Card";
+import Products from "@/components/Products";
+import Card from "../components/Card";
 
 
 Vue.use(VueRouter)
